@@ -13,13 +13,16 @@
         <p></p>
         <textarea v-model="description" placeholder="Description" />
         <p></p>
-        <button @click="uploadFood()">Upload</button>
-        <div class="form" v-if="addFood">
+        <input type="file" name="photo" @change="fileChanged" />
+        
+        <div class="form">
           <p></p>
           <input v-model="singleAllergen" placeholder="Add any allergens" />
           <button @click="addAllergen">Add</button>
         </div>
-        <button @click="updateFood(addFood)">Submit</button>
+        <p></p>
+        <button @click="uploadFood()">Upload</button>
+        <!-- <button @click="updateFood(addFood)">Submit</button> -->
       </div>
     </div>
 
@@ -49,26 +52,25 @@ export default {
       addFood: null,
       reviews: [],
       recipes: [],
+      file: null,
     };
   },
   methods: {
-    async uploadPicture() {
+    fileChanged(event) {
+      this.file = event.target.files[0];
+    },
+    async uploadFood() {
       try {
         const formData = new FormData();
         formData.append("photo", this.file, this.file.name);
         let r1 = await axios.post("/api/photos", formData);
-        return r1;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    async uploadFood() {
-      try {
-        let r1 = await this.uploadPicture();
+        
         let r2 = await axios.post("/api/food", {
           title: this.title,
           description: this.description,
+          allergens: this.allergens,
           path: r1.data.path,
+          reviews: this.reviews,
         });
         this.addFood = r2.data;
       } catch (error) {
@@ -76,21 +78,21 @@ export default {
       }
     },
     async addAllergen() {
-        this.addFood.allergens.push(this.singleAllergen);
-        this.singleAllergen = "";
+      this.allergens.push(this.singleAllergen);
+      this.singleAllergen = "";
     },
     async updateFood(food) {
-        try {
-            await axios.put("/api/food/" + food._id, {
-                title: this.food.title,
-                description: this.food.description,
-                allergens: this.food.allergens,
-                reviews: this.food.reviews,
-            });
-            this.addFood = null;
-        } catch(error) {
-            console.log(error);
-        }
+      try {
+        await axios.put("/api/food/" + food._id, {
+          title: this.food.title,
+          description: this.food.description,
+          allergens: this.food.allergens,
+          reviews: this.food.reviews,
+        });
+        this.addFood = null;
+      } catch (error) {
+        console.log(error);
+      }
     },
     //pets below
   },
