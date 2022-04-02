@@ -9,12 +9,22 @@ app.use(bodyParser.urlencoded({
 
 
 const mongoose = require('mongoose');
-//create scheme for items in the museum: a title and a path to an image
+
 const recipeSchema = new mongoose.Schema({
   title: String,
   description: String,
-  ingredients: [String],
+  allergens: [String],
+  path: String,
+  reviews: [String],
 });
+
+const petSchema = new mongoose.Schema({
+  name: String,
+  favoriteFood: String,
+  bio: String,
+  path: String,
+});
+
 //creat a model for items in the museum
 const Recipe = mongoose.model('Recipe', recipeSchema);
 
