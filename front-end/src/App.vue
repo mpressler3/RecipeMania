@@ -6,13 +6,13 @@
       </div>
       
       <div class="title">
-        <h1>Recipe Mania</h1>
+        <h1>Woofer Food Reviews</h1>
       </div>
 
       <div class="nav-bar">
         <router-link to="/">
           <div class="nav-item">
-            <h3>Recipes</h3>
+            <h3>Foods</h3>
           </div>
         </router-link>
         <router-link to="/">

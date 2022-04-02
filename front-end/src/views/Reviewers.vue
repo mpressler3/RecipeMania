@@ -1,14 +1,11 @@
 <template>
   <div class="home">
     <section class="image-gallery">
-      <div class="image" v-for="item in food" :key="item.id">
-        <h2>{{ item.title }}</h2>
-        <img :src="item.path" />
-        <p>{{ item.description }}</p>
-        <p>{{ item.allergens }}</p>
-        <p v-for="review in item.reviews" :key="review">
-          {{ review }}
-        </p>
+      <div class="image" v-for="reviewer in reviewers" :key="reviewer.id">
+        <h2>{{ reviewer.name }}</h2>
+        <img :src="reviewer.path" />
+        <p>{{ reviewer.favoriteFood }}</p>
+        <p>{{ reviewer.bio }}</p>
       </div>
     </section>
   </div>
@@ -18,20 +15,20 @@
 import axios from "axios";
 
 export default {
-  name: "FoodHome",
+  name: "Reviewers",
   data() {
     return {
-      food: [],
+      reviewers: [],
     };
   },
   created() {
-    this.getFood();
+    this.getReviewers();
   },
   methods: {
-    async getFood() {
+    async getReviewers() {
       try {
-        let response = await axios.get("/api/food");
-        this.food = response.data;
+        let response = await axios.get("/api/pets");
+        this.reviewers = response.data;
         return true;
       } catch (error) {
         console.log(error);
@@ -68,6 +65,6 @@ export default {
 }
 
 .image-gallery {
-  column-count: 2;
+  column-count: 1;
 }
 </style>
