@@ -4,8 +4,8 @@
       <div class="image" v-for="reviewer in reviewers" :key="reviewer.id">
         <h2>{{ reviewer.name }}</h2>
         <img :src="reviewer.path" />
-        <p>{{ reviewer.favoriteFood }}</p>
-        <p>{{ reviewer.bio }}</p>
+        <p>Favorite Food: {{ reviewer.favoriteFood }}</p>
+        <p>Bio: {{ reviewer.bio }}</p>
       </div>
     </section>
   </div>

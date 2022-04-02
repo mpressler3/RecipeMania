@@ -4,10 +4,13 @@
       <div class="image" v-for="item in food" :key="item.id">
         <h2>{{ item.title }}</h2>
         <img :src="item.path" />
+        <h3>Description</h3>
         <p>{{ item.description }}</p>
+        <h3>Allergens</h3>
         <p v-for="allergen in item.allergens" :key="allergen">
           {{ allergen }}
         </p>
+        <h3>Reviews</h3>
         <p v-for="review in item.reviews" :key="review">
           {{ review }}
         </p>
