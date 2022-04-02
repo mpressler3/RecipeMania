@@ -47,7 +47,7 @@ export default {
     methods: {
         async upload() {
             try {
-                let r1 = await axios.post('/api/recipes', {
+                let r1 = await axios.post('/api/food', {
                     title: this.title,
                     description: this.description,
                     ingredients: this.ingredients,
