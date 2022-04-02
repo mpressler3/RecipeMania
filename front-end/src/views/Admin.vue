@@ -75,13 +75,18 @@ export default {
       findTitle: "",
     };
   },
-  computed: {   //functions run automatically when a data field is changed
+  computed: {
+    //functions run automatically when a data field is changed
     foodSuggestions() {
-      let foods = this.foods.filter(food => food.title.toLowerCase().startsWith(this.findTitle.toLowerCase()));
-      return foods.sort((a,b) => a.title > b.title);
-    }
+      let foods = this.foods.filter((food) =>
+        food.title.toLowerCase().startsWith(this.findTitle.toLowerCase())
+      );
+      return foods.sort((a, b) => a.title > b.title);
+    },
   },
-
+  created() {
+    this.getFoods();
+  },
   methods: {
     fileChanged(event) {
       this.file = event.target.files[0];
@@ -89,6 +94,15 @@ export default {
     selectFood(food) {
       this.findTitle = "";
       this.findFood = food;
+    },
+    async getFoods() {
+      try {
+        let response = await axios.get('/api/food');
+        this.foods = response.data;
+        return true;
+      } catch (error) {
+        //console.log(error);
+      }
     },
     async uploadFood() {
       try {
