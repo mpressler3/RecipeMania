@@ -91,7 +91,7 @@ app.post('/api/food', async (req, res) => {
 //Update food item
 app.put('api/food/:id', async (req, res) => {
   try {
-    let food = await Food.findOne(req.body._id);
+    let food = await Food.findOne(req.params.id);
     food.title = req.body.title;
     food.description = req.body.description;
     food.allergens = req.body.allergens;
@@ -153,7 +153,7 @@ app.post('/api/pets', async (req, res) => {
 //Update food item
 app.put('api/pets/:id', async (req, res) => {
   try {
-    let pet = await Pet.findOne(req.body._id);
+    let pet = await Pet.findOne(req.params.id);
     pet.name = req.body.name;
     pet.favoriteFood = req.body.favoriteFood;
     pet.bio = req.body.bio;
