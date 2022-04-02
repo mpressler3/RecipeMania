@@ -22,7 +22,13 @@
         </div>
         <p></p>
         <button @click="uploadFood()">Upload</button>
-        <!-- <button @click="updateFood(addFood)">Submit</button> -->
+      </div>
+
+      <div class="header">
+          <h3>Edit Foods</h3>
+      </div>
+      <div class="update">
+          
       </div>
     </div>
 
