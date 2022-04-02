@@ -1,6 +1,11 @@
 <template>
   <div id="app">
     <div class="header">
+      <router-link to="/">
+        <div class="logo">
+          <img src="/dish.png">
+        </div>
+      </router-link>
       <h1>Recipe Mania</h1>
     </div>
     <div class="content">
@@ -32,8 +37,12 @@ export default {
 .header {
   display: flex;
   padding: 10px 100px 0px 100px;
-  background-color: #5BDEFF;
-  color: #1C454F;
+  background-color: #ffe65b;
+  color: #300d0d;
+}
+.logo img{
+  height: 2em;
+  padding: 25px 20px 0px 0px;
 }
 
 .title {
@@ -54,8 +63,8 @@ export default {
 .footer {
   height: 50px;
   padding: 20px 100px 0px 100px;
-  background: #e3e3e3;
-  font-size: 12px;
+  background: #ffe65b;
+  font-size: 18px;
 }
 
 .footer a {

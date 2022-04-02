@@ -23,5 +23,32 @@ mongoose.connect('mongodb://localhost:27017/recipes', {
   useNewUrlParser: true
 });
 
+//create new recipe and add to database; takes a title, description, and list of ingredients
+app.post('/api/recipes', async(req, res) => {
+  const recipe = new Recipe({
+    title: req.body.title,
+    description: req.body.description,
+    ingredients: req.body.ingredients,
+  });
+  try {
+    await recipe.save();
+    res.send(recipe);
+  } catch(error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+//get list of all recipes in database
+app.get('/api/recipes', async(req, res) => {
+  try {
+    let recipes = await Recipe.find();
+    res.send(recipes);
+  } catch(error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 
 app.listen(3000, () => console.log('Server listening on port 3000!'));
