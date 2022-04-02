@@ -65,7 +65,7 @@ export default {
     async uploadFood() {
       try {
         let r1 = await this.uploadPicture();
-        let r2 = await axios.post("/api/recipes", {
+        let r2 = await axios.post("/api/food", {
           title: this.title,
           description: this.description,
           path: r1.data.path,
