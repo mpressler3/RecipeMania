@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Admin from '../views/Admin.vue'
-import Reviewers from '../views/Reviewers.vue'
+import ReviewersList from '../views/Reviewers.vue'
 
 Vue.use(VueRouter)
 
@@ -19,7 +19,7 @@ const routes = [{
     {
         path: '/reviewers',
         name: 'Reviewers',
-        component: Reviewers
+        component: ReviewersList
     }
 ]
 

@@ -5,7 +5,9 @@
         <h2>{{ item.title }}</h2>
         <img :src="item.path" />
         <p>{{ item.description }}</p>
-        <p>{{ item.allergens }}</p>
+        <p v-for="allergen in item.allergens" :key="allergen">
+          {{ allergen }}
+        </p>
         <p v-for="review in item.reviews" :key="review">
           {{ review }}
         </p>
@@ -67,7 +69,15 @@ export default {
   width: 100%;
 }
 
-.image-gallery {
-  column-count: 2;
+@media only screen and (max-width: 5000px) and (min-width: 768px) {
+  .image-gallery {
+    column-count: 2;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 540px) {
+  .image-gallery {
+    column-count: 1;
+  }
 }
 </style>
