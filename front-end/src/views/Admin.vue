@@ -14,7 +14,7 @@
         <textarea v-model="description" placeholder="Description" />
         <p></p>
         <input type="file" name="photo" @change="fileChanged" />
-        
+
         <div class="form">
           <p></p>
           <input v-model="singleAllergen" placeholder="Add any allergens" />
@@ -25,10 +25,23 @@
       </div>
 
       <div class="header">
-          <h3>Edit Foods</h3>
+        <h3>Edit Foods</h3>
       </div>
+
       <div class="update">
-          
+        <div class="form">
+          <input v-model="findTitle" placeholder="Search" />
+          <div class="suggestion" v-if="foodSuggestions.length > 0">
+            <div
+              class="suggestion"
+              v-for="s in foodSuggestions"
+              :key="s.id"
+              @click="selectFood(s)"
+            >
+              {{ s.title }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -55,22 +68,48 @@ export default {
       description: "",
       allergens: [],
       singleAllergen: "",
-      addFood: null,
+      findFood: null,
       reviews: [],
-      recipes: [],
+      foods: [],
       file: null,
+      findTitle: "",
     };
+  },
+  computed: {
+    //functions run automatically when a data field is changed
+    foodSuggestions() {
+      let foods = this.foods.filter((food) =>
+        food.title.toLowerCase().startsWith(this.findTitle.toLowerCase())
+      );
+      return foods.sort((a, b) => a.title > b.title);
+    },
+  },
+  created() {
+    this.getFoods();
   },
   methods: {
     fileChanged(event) {
       this.file = event.target.files[0];
+    },
+    selectFood(food) {
+      this.findTitle = "";
+      this.findFood = food;
+    },
+    async getFoods() {
+      try {
+        let response = await axios.get('/api/food');
+        this.foods = response.data;
+        return true;
+      } catch (error) {
+        //console.log(error);
+      }
     },
     async uploadFood() {
       try {
         const formData = new FormData();
         formData.append("photo", this.file, this.file.name);
         let r1 = await axios.post("/api/photos", formData);
-        
+
         let r2 = await axios.post("/api/food", {
           title: this.title,
           description: this.description,
