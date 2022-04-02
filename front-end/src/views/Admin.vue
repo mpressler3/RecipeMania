@@ -13,7 +13,7 @@
         <p></p>
         <textarea v-model="description" placeholder="Description" />
         <p></p>
-        <button @click="uploadFood">Upload</button>
+        <button @click="uploadFood()">Upload</button>
         <div class="form" v-if="addFood">
           <p></p>
           <input v-model="singleAllergen" placeholder="Add any allergens" />
@@ -76,7 +76,7 @@ export default {
       }
     },
     async addAllergen() {
-        this.addFood.allergens.push(singleAllergen);
+        this.addFood.allergens.push(this.singleAllergen);
         this.singleAllergen = "";
     },
     async updateFood(food) {
