@@ -213,6 +213,7 @@ export default {
           reviews: this.reviews,
         });
         this.addFood = r2.data;
+        this.getFoods();
       } catch (error) {
         console.log(error);
       }
@@ -290,6 +291,7 @@ export default {
           path: r1.data.path,
         });
         this.addPet = r2.data;
+        this.getPets();
       } catch (error) {
         console.log(error);
       }
