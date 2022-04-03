@@ -58,8 +58,11 @@
           <input v-model="findFood.title" />
           <p></p>
           <img :src="findFood.path" />
-          Description
-          <textarea v-model="findFood.description" />
+          <p></p>
+          <div class="bigger-forms">
+            <p>Description</p>
+            <textarea v-model="findFood.description" />
+          </div>
           <p></p>
         </div>
         <div class="actions" v-if="findFood">
@@ -69,7 +72,8 @@
       </div>
     </div>
 
-    <!--Edit pets below this line--> <p></p>
+    <!--Edit pets below this line-->
+    <p></p>
 
     <div class="add-food">
       <h2>Add a Reviewer</h2>
@@ -107,7 +111,7 @@
               :key="s.id"
               @click="selectPet(s)"
             >
-              {{ s.title }}
+              {{ s.name }}
             </div>
           </div>
         </div>
@@ -117,10 +121,13 @@
           <input v-model="findPet.name" />
           <p></p>
           <img :src="findPet.path" />
-          Favorite Food
-          <input v-model="findPet.favoriteFood" />
-          Bio
-          <textarea v-model="findFood.description" />
+          <p></p>
+          <div class="bigger-forms">
+            <p>Favorite Food</p>
+            <input v-model="findPet.favoriteFood" />
+            <p>Bio</p>
+            <textarea v-model="findPet.bio" />
+          </div>
           <p></p>
         </div>
         <div class="actions" v-if="findPet">
@@ -173,6 +180,7 @@ export default {
   },
   created() {
     this.getFoods();
+    this.getPets();
   },
   methods: {
     fileChanged(event) {
@@ -299,8 +307,9 @@ export default {
     async editPet(item) {
       try {
         await axios.put("/api/pets/" + item._id, {
-          title: this.findPet.title,
-          description: this.findPet.description,
+          name: this.findPet.name,
+          favoriteFood: this.findPet.favoriteFood,
+          bio: this.findPet.bio,
         });
         this.findPet = null;
         this.getPets();
@@ -335,8 +344,21 @@ export default {
 }
 
 .upload {
-  display: flex;
+  /* display: flex; */
+  padding: 10px 0;
+  align-items: center;
+  vertical-align: top;
 }
+.upload input {
+    text-align: top;
+}
+.bigger-forms {
+    display: flex;
+}
+.bigger-forms p {
+    padding: 0px 10px;
+}
+
 
 /* Uploaded images */
 .upload h2 {
@@ -365,7 +387,7 @@ export default {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 10px 20px;
