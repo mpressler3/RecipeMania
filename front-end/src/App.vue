@@ -15,7 +15,7 @@
             <h3>Foods</h3>
           </div>
         </router-link>
-        <router-link to="/">
+        <router-link to="/reviewers">
           <div class="nav-item">
             <h3>Reviewers</h3>
           </div>

@@ -170,7 +170,7 @@ app.put('api/pets/:id', async (req, res) => {
 app.put('api/pets/:id', async (req, res) => {
   try {
     await Pet.deleteOne({
-      _id: req.params.id
+      id: req.params.id
     });
     res.sendStatus(200);
   }

@@ -61,7 +61,7 @@ export default {
 }
 
 .image img {
-  width: 100%;
+  width: 50%;
 }
 
 .image-gallery {
