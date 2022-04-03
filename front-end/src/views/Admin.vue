@@ -99,7 +99,7 @@
 
       <div class="edit">
         <div class="form">
-          <input v-model="findTitle" placeholder="Search" />
+          <input v-model="findTitlePet" placeholder="Search" />
           <div class="suggestions" v-if="petSuggestions.length > 0">
             <div
               class="suggestion"
