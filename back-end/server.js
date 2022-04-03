@@ -89,13 +89,15 @@ app.post('/api/food', async (req, res) => {
 
 
 //Update food item
-app.put('api/food/:id', async (req, res) => {
+app.put('/api/food/:id', async (req, res) => {
   try {
-    let food = await Food.findOne(req.params.id);
+    let food = await Food.findOne({
+      _id: req.params.id
+    });
     food.title = req.body.title;
     food.description = req.body.description;
-    food.allergens = req.body.allergens;
-    food.reviews = req.body.reviews;
+    //food.allergens = req.body.allergens;
+    //food.reviews = req.body.reviews;
     await food.save();
     res.send(food);
   }
@@ -106,7 +108,7 @@ app.put('api/food/:id', async (req, res) => {
 });
 
 //Delete food item
-app.put('api/food/:id', async (req, res) => {
+app.delete('/api/food/:id', async (req, res) => {
   try {
     await Food.deleteOne({
       _id: req.params.id
@@ -151,9 +153,11 @@ app.post('/api/pets', async (req, res) => {
 
 
 //Update food item
-app.put('api/pets/:id', async (req, res) => {
+app.put('/api/pets/:id', async (req, res) => {
   try {
-    let pet = await Pet.findOne(req.params.id);
+    let pet = await Pet.findOne({
+      _id: req.params.id
+    });
     pet.name = req.body.name;
     pet.favoriteFood = req.body.favoriteFood;
     pet.bio = req.body.bio;
@@ -167,7 +171,7 @@ app.put('api/pets/:id', async (req, res) => {
 });
 
 //Delete food item
-app.put('api/pets/:id', async (req, res) => {
+app.delete('/api/pets/:id', async (req, res) => {
   try {
     await Pet.deleteOne({
       id: req.params.id
@@ -181,4 +185,4 @@ app.put('api/pets/:id', async (req, res) => {
 });
 
 
-app.listen(3000, () => console.log('Server listening on port 3000!'));
+app.listen(3001, () => console.log('Server listening on port 3001!'));
