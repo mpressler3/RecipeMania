@@ -196,7 +196,7 @@ export default {
         this.foods = response.data;
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async uploadFood() {
@@ -215,7 +215,7 @@ export default {
         this.addFood = r2.data;
         this.getFoods();
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async deleteFood(item) {
@@ -225,7 +225,7 @@ export default {
         this.getFoods();
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async editFood(item) {
@@ -238,7 +238,7 @@ export default {
         this.getFoods();
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async addAllergen() {
@@ -259,7 +259,7 @@ export default {
         });
         this.addFood = null;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
 
@@ -275,7 +275,7 @@ export default {
         this.pets = response.data;
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async uploadPet() {
@@ -293,7 +293,7 @@ export default {
         this.addPet = r2.data;
         this.getPets();
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async deletePet(item) {
@@ -303,7 +303,7 @@ export default {
         this.getPets();
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async editPet(item) {
@@ -317,7 +317,7 @@ export default {
         this.getPets();
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
   },

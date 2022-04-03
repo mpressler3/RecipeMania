@@ -31,7 +31,7 @@ export default {
         this.reviewers = response.data;
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
   },
